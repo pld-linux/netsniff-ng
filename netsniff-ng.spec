@@ -35,6 +35,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %prep
 %setup -q
+%{__sed} -e '43i#include <stdint.h>' -i staging/mz.h
 
 %build
 NACL_INC_DIR=$(pkg-config --variable=includedir libsodium )/sodium \
