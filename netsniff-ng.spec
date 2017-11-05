@@ -39,7 +39,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %build
 NACL_INC_DIR=$(pkg-config --variable=includedir libsodium )/sodium \
 NACL_LIB=sodium \
-%configure \
+./configure \
 	--sysconfdir="%{_sysconfdir}" \
 	--prefix="%{_prefix}"
 %{__make} \
