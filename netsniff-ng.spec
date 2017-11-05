@@ -44,8 +44,8 @@ NACL_LIB=sodium \
 	--prefix="%{_prefix}"
 %{__make} \
 	%{?debug:DEBUG=1} \
-	%{!?debug:HARDENING=1} \
 	Q=
+#	%{!?debug:HARDENING=1 CPPFLAGS="%{rpmcflags}"} \
 
 %install
 rm -rf $RPM_BUILD_ROOT
