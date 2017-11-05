@@ -42,9 +42,9 @@ NACL_LIB=sodium \
 ./configure \
 	--sysconfdir="%{_sysconfdir}" \
 	--prefix="%{_prefix}"
-%{__make} -j1 \
+%{__make} \
 	%{?debug:DEBUG=1} \
-	%{!?debug:HARDENING=1 CPPFLAGS="%{rpmcflags}"} \
+	%{!?debug:HARDENING=1} \
 	Q=
 
 %install
