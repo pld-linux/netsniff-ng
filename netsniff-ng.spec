@@ -55,7 +55,7 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{zsh_compdir}}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-for i in *.zsh
+for i in *.zsh; do
 	install -p "$i" $RPM_BUILD_ROOT%{zsh_compdir}/_"${i%.zsh}"
 done
 
