@@ -44,7 +44,7 @@ NACL_LIB=sodium \
 	--prefix="%{_prefix}"
 %{__make} \
 	%{?debug:DEBUG=1} \
-	%{!?debug:HARDENING=1 CPPFLAGS="%{rpmcflags}"} \
+	%{!?debug:HARDENING=0 CPPFLAGS="%{rpmcflags}"} \
 	Q=
 
 %install
