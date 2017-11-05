@@ -64,7 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS README REPORTING-BUGS bpf_jit_disasm bpf.vim
+%doc AUTHORS README REPORTING-BUGS bpf_jit_disasm.c bpf.vim
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/%{name}/*
 %attr(755,root,root) %{_sbindir}/*
