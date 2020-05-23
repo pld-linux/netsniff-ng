@@ -1,12 +1,12 @@
 Summary:	A Swiss army knife for network plumbing
 Summary(pl.UTF-8):	"Szwajcarski scyzoryk" do napraw sieci
 Name:		netsniff-ng
-Version:	0.6.3
-Release:	2
+Version:	0.6.7
+Release:	1
 License:	GPL v2
 Group:		Networking/Utilities
 Source0:	http://pub.netsniff-ng.org/netsniff-ng/%{name}-%{version}.tar.xz
-# Source0-md5:	e892a7f2e025fba07d0f0a330e9917df
+# Source0-md5:	2aba9835923c30721fa891a9dc59507c
 URL:		http://netsniff-ng.org/
 BuildRequires:	GeoIP-devel >= 1.4.8
 BuildRequires:	bison
@@ -57,18 +57,16 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %prep
 %setup -q
 
-%{__sed} -e '43i#include <stdint.h>' -i staging/mz.h
-
 %build
-NACL_INC_DIR=$(pkg-config --variable=includedir libsodium)/sodium \
-NACL_LIB=sodium \
+# not autoconf configure
 ./configure \
 	--sysconfdir="%{_sysconfdir}" \
 	--prefix="%{_prefix}"
 %{__make} \
+	CC="%{__cc}" \
+	CPPFLAGS="%{rpmcflags} %{rpmcppflags}" \
 	%{?debug:DEBUG=1} \
 	Q=
-#	%{!?debug:HARDENING=1 CPPFLAGS="%{rpmcflags}"} \
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -78,7 +76,7 @@ install -d $RPM_BUILD_ROOT{%{_sbindir},%{zsh_compdir}}
 	DESTDIR=$RPM_BUILD_ROOT
 
 for i in *.zsh; do
-	install -p "$i" $RPM_BUILD_ROOT%{zsh_compdir}/_"${i%.zsh}"
+	cp -p "$i" $RPM_BUILD_ROOT%{zsh_compdir}/_"${i%.zsh}"
 done
 
 %clean
