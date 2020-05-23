@@ -64,7 +64,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 	--prefix="%{_prefix}"
 %{__make} \
 	CC="%{__cc}" \
-	CPPFLAGS="%{rpmcflags} %{rpmcppflags}" \
+	CPPFLAGS="%{rpmcflags} %{rpmcppflags} -fcommon" \
 	%{?debug:DEBUG=1} \
 	Q=
 
