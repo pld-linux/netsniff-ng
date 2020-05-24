@@ -7,6 +7,7 @@ License:	GPL v2
 Group:		Networking/Utilities
 Source0:	http://pub.netsniff-ng.org/netsniff-ng/%{name}-%{version}.tar.xz
 # Source0-md5:	2aba9835923c30721fa891a9dc59507c
+Patch0:		%{name}-opt.patch
 URL:		http://netsniff-ng.org/
 BuildRequires:	GeoIP-devel >= 1.4.8
 BuildRequires:	bison
@@ -56,12 +57,15 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 # not autoconf configure
 ./configure \
 	--sysconfdir="%{_sysconfdir}" \
 	--prefix="%{_prefix}"
+
+# as of 0.6.7 code relies on -fcommon behaviour, force it for gcc 10+
 %{__make} \
 	CC="%{__cc}" \
 	CPPFLAGS="%{rpmcflags} %{rpmcppflags} -fcommon" \
