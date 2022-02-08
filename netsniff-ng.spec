@@ -2,7 +2,7 @@ Summary:	A Swiss army knife for network plumbing
 Summary(pl.UTF-8):	"Szwajcarski scyzoryk" do napraw sieci
 Name:		netsniff-ng
 Version:	0.6.7
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Networking/Utilities
 Source0:	http://pub.netsniff-ng.org/netsniff-ng/%{name}-%{version}.tar.xz
