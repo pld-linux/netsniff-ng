@@ -2,7 +2,7 @@ Summary:	A Swiss army knife for network plumbing
 Summary(pl.UTF-8):	"Szwajcarski scyzoryk" do napraw sieci
 Name:		netsniff-ng
 Version:	0.6.7
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Networking/Utilities
 Source0:	http://pub.netsniff-ng.org/netsniff-ng/%{name}-%{version}.tar.xz
@@ -76,7 +76,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_sbindir},%{zsh_compdir}}
 
-%{__make} install \
+%{__make} -j1 install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 for i in *.zsh; do
